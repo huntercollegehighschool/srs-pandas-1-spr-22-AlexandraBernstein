@@ -38,7 +38,7 @@ print(green)
 
 Create a dataframe that only contains the score for each game. You can save it in a new dataframe variable, but you don't have to. Print that new dataframe.
 """
-yellow = pd.read_csv('ign.csv', index_col = 1)
+yellow = pd.read_csv('ign.csv', index_col = 2)
 print(yellow)
 
 """
@@ -49,23 +49,32 @@ print(yellow)
 <dataframe>.median()
 <dataframe>.std()  # standard deviation
 """
-yellow.max()
-yellow.min()
-yellow.mean()
-yellow.median()
-yellow.std()
+print(yellow["score"].max())
+print(yellow["score"].min())
+print(yellow["score"].mean())
+print(yellow["score"].median())
+print(yellow["score"].std())
 """
 8. pandas has a function that returns a series indicating how many of each value is in a dataframe (<dataframe>.value_counts()). Use that function to find the counts in the platform, score, and release_month columns, and print the results. You will want to create 3 new dataframes that you can use value_counts() on.
 """
-
+purple = yellow["platform"]
+print(purple.value_counts())
+orange = yellow["score"]
+print(orange.value_counts())
+pink = yellow["release_month"]
+print(pink.value_counts())
 """
 9. pandas supports Boolean indexing. For example, reviews[reviews['score'] < 1] would return a dataframe containing games that got a score below a 1.
 
 Create 2 new dataframes, one with only games that got scores below 2, and one with only games that got scores of 10. Print both dataframes.
 """
-
+macaroni = yellow[yellow['score'] < 2]
+print(macaroni)
+lavender = yellow[yellow['score'] == 10]
+print(lavender)
 """
 10. Save both the new dataframes you created in #9 to a csv file (it will make it much nicer to look at). Name the files 'trash.csv' and 'perfect.csv'
 <dataframe>.to_csv('<filename>')
 """
-
+macaroni.to_csv('trash.csv')
+lavender.to_csv('perfect.csv')
